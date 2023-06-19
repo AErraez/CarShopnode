@@ -6,6 +6,7 @@ import Car from './Car';
 import Client from './Client';
 import Service from './Services';
 import Order from './Order';
+import End from './End';
 
 function App() {
   const [CarInfo, setCar]= useState({})
@@ -15,11 +16,11 @@ function App() {
   return (
     <div className="App">
       < Layout>
-        {Step == 0 && < Client setclient={setClient} setstep={setStep}/>}
-        {Step ==1 &&< Car setcar={setCar} setstep={setStep}/>}
-        {Step ==2 && < Service setservice={setService} setstep={setStep}/>}
-        {Step ==3 && < Order client={ClientInfo} car={CarInfo} servicechosen={ServiceInfo}/>}
-        <button onClick={()=>console.log(CarInfo, ClientInfo, ServiceInfo)}>Consultar</button>
+        {Step == 0 && < Client setclient={setClient} setstep={setStep} client={ClientInfo}/>}
+        {Step ==1 &&< Car setcar={setCar} setstep={setStep} car={CarInfo}/>}
+        {Step ==2 && < Service setservice={setService} setstep={setStep} servicechosen={ServiceInfo}/>}
+        {Step ==3 && < Order client={ClientInfo} car={CarInfo} servicechosen={ServiceInfo} setchosen={setService} setstep={setStep}/>}
+        {Step ==4 &&< End/>}
       </Layout>
     </div>
   );
