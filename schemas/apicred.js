@@ -7,4 +7,4 @@ const apicred = mongoose.Schema({
 
 const Apicred = new mongoose.model('Apicred', apicred);
 
-module.exports = Apicred;
+module.exports = Apicred; 
