@@ -1,5 +1,25 @@
 
+import axios from 'axios'
+import { useNavigate } from "react-router-dom";
+
 export default function Order ({client, car, servicechosen, setstep}){
+    const navigate = useNavigate();
+    function ConfirmPurchase(){
+        let services= servicechosen.map((serv)=>serv.name)
+        setstep(4)
+        axios.post('http://localhost:3002/user/order',{client, car, services})
+        .then((response)=>{
+            console.log("Data: ", response)
+        })
+        .catch((error) => {
+            if (error.response && error.response.status === 401){
+              navigate("/login");
+            }
+    
+          });
+    }
+
+    console.log(client, car, servicechosen)
     function addDays( days) {
         let date= new Date()
         date.setDate(date.getDate() + days);
@@ -121,7 +141,7 @@ export default function Order ({client, car, servicechosen, setstep}){
                 <h2>Fecha estimada de entrega: {delivery.toLocaleString()}</h2>
 
                 <button className="btn btn-primary float-start" onClick={back}> Regresar </button>
-                <button className="btn btn-primary float-end" onClick={()=>setstep(4)}>Confirmar</button>
+                <button className="btn btn-primary float-end" onClick={ConfirmPurchase}>Confirmar</button>
             </div>
         </div>
         </div>

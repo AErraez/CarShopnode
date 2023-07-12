@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function End() {
     return (
       <div className="py-5 h-75 d-flex align-items-center justify-content-center">
@@ -8,7 +10,7 @@ export default function End() {
             nuestros servicios.
           </p>
 
-          <a href=""><button  className="btn btn-primary mt-4">Volver al inicio</button></a>
+          <Link to="/"><button  className="btn btn-primary mt-4">Volver al inicio</button></Link>
         </div>
       </div>
     );

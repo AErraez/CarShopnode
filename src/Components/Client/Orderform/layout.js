@@ -2,8 +2,8 @@
 
 export default function Layout ({children}){
     return(
-        <div className="">
-            <h1 className="text-center py-4">K-Chow Car Services</h1>
+        <div className="py-3">
+            
             {children}
         </div>
     )

@@ -1,27 +1,41 @@
 
 import './App.css';
-import { useState } from 'react';
-import Layout from './layout';
-import Car from './Car';
-import Client from './Client';
-import Service from './Services';
-import Order from './Order';
-import End from './End';
+import { useState, useEffect } from 'react';
+import Orderform from './Components/Client/Orderform/Orderform'
+import Landing from './Components/Client/Landing/Landing';
+import Login from './Components/Client/Login/Login';
+import Ordertable from './Components/Client/Ordertable/Ordertable';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Signup from './Components/Client/Login/Signup';
+import axios from 'axios';
+
 
 function App() {
-  const [CarInfo, setCar]= useState({})
-  const [ClientInfo, setClient]= useState({})
-  const [ServiceInfo, setService]= useState([])
-  const [Step, setStep] = useState(0)
+  const [user, setuser]=useState({})
+
+  useEffect(()=>{
+    axios.get("http://localhost:3002/user/authenticate")
+    .then((response)=>{
+    
+      setuser(response.data.user)
+    })
+    .catch((error)=>{
+      console.log(error)
+      setuser({})
+    })
+  }, [])
+
+
   return (
     <div className="App">
-      < Layout>
-        {Step == 0 && < Client setclient={setClient} setstep={setStep} client={ClientInfo}/>}
-        {Step ==1 &&< Car setcar={setCar} setstep={setStep} car={CarInfo}/>}
-        {Step ==2 && < Service setservice={setService} setstep={setStep} servicechosen={ServiceInfo}/>}
-        {Step ==3 && < Order client={ClientInfo} car={CarInfo} servicechosen={ServiceInfo} setchosen={setService} setstep={setStep}/>}
-        {Step ==4 &&< End/>}
-      </Layout>
+      <Routes>
+        <Route  path='/'  element={<Landing user={user} setuser={setuser}/>}/>
+        <Route path='/order'element={<Orderform user={user} setuser={setuser}/>} />
+        <Route path='/login'  element={<Login setuser={setuser}/>}/>
+        <Route path='/signup' Component={Signup} />
+        <Route path='/review' element={< Ordertable user={user} setuser={setuser}/>}/>
+        
+      </Routes>
     </div>
   );
 }
