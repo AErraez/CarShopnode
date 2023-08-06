@@ -1,9 +1,14 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { useContext } from "react";
+import { apiurl } from "../../../Context/Apiurl";
 export default function Navbar({ user = {}, setuser }) {
+  
+  const apiUrl = useContext(apiurl);
+
   function Logout() {
     axios
-      .post("http://localhost:3002/user/logout")
+      .post(apiUrl+"user/logout")
       .then((response) => {
         console.log("Session ended");
         setuser({});

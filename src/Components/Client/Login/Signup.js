@@ -1,7 +1,12 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Misc/Nav";
+import { useContext } from "react";
+import { apiurl } from "../../../Context/Apiurl";
+
 export default function Signup() {
+  const apiUrl = useContext(apiurl);
+
   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();
@@ -9,7 +14,7 @@ export default function Signup() {
     const formData = new FormData(form);
     const user = Object.fromEntries(formData.entries());
     axios
-      .post("http://localhost:3002/user/signup", { user })
+      .post(apiUrl+"user/signup", { user })
       .then((response) => {
         
         if (response.data.code == "Ok") {

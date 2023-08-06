@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Misc/Nav";
-
-const apiUrl = process.env.REACT_APP_API_URL;
+import { useContext } from "react";
+import { apiurl } from "../../../Context/Apiurl";
 
 export default function Login({setuser}) {
+  const apiUrl = useContext(apiurl);
+
   const navigate = useNavigate();
   function handleSubmit(e) {
     e.preventDefault();

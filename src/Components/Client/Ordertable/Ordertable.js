@@ -3,13 +3,17 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Navbar from "../Misc/Nav";
 import Footer from "../Misc/Footer";
+import { useContext } from "react";
+import { apiurl } from "../../../Context/Apiurl";
 export default function Ordertable({user, setuser}) {
+  const apiUrl = useContext(apiurl);
+
   const [data, setdata] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     axios
-      .get("http://localhost:3002/user/order")
+      .get(apiUrl+"user/order")
       .then((response) => {
         setdata(response.data.orders);
       })

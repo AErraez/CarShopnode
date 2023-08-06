@@ -1,13 +1,17 @@
 
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { apiurl } from "../../../Context/Apiurl";
+
 
 export default function Order ({client, car, servicechosen, setstep}){
+    const apiUrl = useContext(apiurl);
     const navigate = useNavigate();
     function ConfirmPurchase(){
         let services= servicechosen.map((serv)=>serv.name)
         setstep(4)
-        axios.post('http://localhost:3002/user/order',{client, car, services})
+        axios.post(apiUrl+'user/order',{client, car, services})
         .then((response)=>{
             console.log("Data: ", response)
         })
