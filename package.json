@@ -27,7 +27,7 @@
   },
   "scripts": {
     "start": "node client.js",
-    "custom-start": "node client.js ",
+    "custom-start": "node client.js",
     "react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

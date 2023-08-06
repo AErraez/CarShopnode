@@ -1,6 +1,9 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Misc/Nav";
+
+const apiUrl = process.env.REACT_APP_API_URL;
+
 export default function Login({setuser}) {
   const navigate = useNavigate();
   function handleSubmit(e) {
@@ -9,7 +12,7 @@ export default function Login({setuser}) {
     const formData = new FormData(form);
     const user = Object.fromEntries(formData.entries());
     axios
-      .post("http://localhost:3002/user/login", { user })
+      .post( apiUrl+"user/login", { user })
       .then((response) => {
         
         if (response.data.code == "Ok") {
