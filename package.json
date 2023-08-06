@@ -26,7 +26,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "pm2 start ecosystem.config.js",
+    "start": "node client.js",
     "custom-start": "node client.js ",
     "react": "react-scripts start",
     "build": "react-scripts build",
